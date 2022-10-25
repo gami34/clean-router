@@ -1,6 +1,6 @@
 {
   "name": "clean-router",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "cleaner way to declare routes in reactjs using the React-router-dom",
   "author": {
     "name": "Gideon Ifeanyi Mmeremnwanne",

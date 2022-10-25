@@ -24,21 +24,12 @@ class Example extends Component {
     return (
       <Router>
         {mainRouteHandler("/dash", <DashOutlet>, [
-            subRouteHandler("", <Home />),                       // /dash/          
-            subRouteHandler("settings", <Home />),               // /dash/settings  
-            subRouteHandler("profile", <Profile />),             // /dash/profile   
+            subRouteHandler("", <Home />),                     // /dash/
+            subRouteHandler("profile", <Profile />),           // /dash/profile   
             subRouteHandler("email", <EmailOutlet />, [
-                subRouteHandler("", <Inbox />),                  // /dash/email
-                subRouteHandler("spam", <Spam />),               // /dash/email/spam
+              subRouteHandler("", <Inbox />),                  // /dash/email
+              subRouteHandler("spam", <Spam />),               // /dash/email/spam
             ]),
-            subRouteHandler("kanban", <Kanban />,                // /dash/kanban
-            subRouteHandler("account", <AccountOutlet />, [
-                subRouteHandler("", <AccountHome />),            // /dash/account   
-                subRouteHandler("credit", <CreditOutlet />, [
-                    subRouteHandler("internal", <Inbox />),      // /dash/account/credit/internal
-                    subRouteHandler("external", <Spam />),       // /dash/account/credit/external
-                ]),                    
-          ]),
         ])}
       </Router>)
   }
