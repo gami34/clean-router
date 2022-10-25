@@ -14,16 +14,47 @@ npm install --save clean-router
 
 ```tsx
 import React, { Component } from 'react'
-
-import MyComponent from 'clean-router'
-import 'clean-router/dist/index.css'
+import { useCleanRouter } from 'clean-router'
 
 class Example extends Component {
+  
+  const [mainRouteHandler, subRouteHandler] = useCleanRouter(<Loader />)
+
   render() {
-    return <MyComponent />
+    return (
+      <Router>
+        {mainRouteHandler("/dash", <DashOutlet>, [
+            subRouteHandler("", <Home />),                       // /dash/          
+            subRouteHandler("settings", <Home />),               // /dash/settings  
+            subRouteHandler("profile", <Profile />),             // /dash/profile   
+            subRouteHandler("email", <EmailOutlet />, [
+                subRouteHandler("", <Inbox />),                  // /dash/email
+                subRouteHandler("spam", <Spam />),               // /dash/email/spam
+            ]),
+            subRouteHandler("kanban", <Kanban />,                // /dash/kanban
+            subRouteHandler("account", <AccountOutlet />, [
+                subRouteHandler("", <AccountHome />),            // /dash/account   
+                subRouteHandler("credit", <CreditOutlet />, [
+                    subRouteHandler("internal", <Inbox />),      // /dash/account/credit/internal
+                    subRouteHandler("external", <Spam />),       // /dash/account/credit/external
+                ]),                    
+          ]),
+        ])}
+      </Router>)
   }
 }
 ```
+
+## Note
+
+The utility can handle up to 4 level deep routes with param and text counting as one, e.g "user/:userId" is considered as a single count. also "acount/:accountId/:planId" is also a single count"
+
+example of a 4 level deep routes as mentioned above
+/dash/account/credit/internal
+
+## Contributions and Suggestion
+
+you can contribute to the utility as that will be greately appreciated.
 
 ## License
 
